@@ -1,0 +1,20 @@
+.header__logout{
+    background: linear-gradient(60deg,#0cbabab0,#18a7a7) !important;
+    color: #fff !important;
+}
+
+.message{
+    text-align: center;
+    margin-top: 100px;
+}
+
+.left-side, .right-side {
+    height: 50vh;
+    width: 100%;
+}
+
+@media screen and (min-width: 768px){
+    .left-side, .right-side{
+        height: 100vh;
+    }
+}
