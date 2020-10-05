@@ -56,13 +56,14 @@ class Dashboard extends Component {
   };
 
   render() {
+    let getUsername = this.props.location.state.username;
     return (
       <div>
-        <nav class="navbar navbar-light bg-light justify-content-between">
-          <a class="navbar-brand">Udayy</a>
-          <form class="form-inline">
+        <nav className="navbar navbar-light bg-light justify-content-between">
+          <a className="navbar-brand">{getUsername || ''}</a>
+          <form className="form-inline">
             <input
-              class="form-control mr-sm-2"
+              className="form-control mr-sm-2"
               type="search"
               placeholder="Search"
               aria-label="Search"
@@ -71,14 +72,15 @@ class Dashboard extends Component {
               onChange={this.handleChange}
             />
             <i
-              class="fa fa-search"
+              className="fa fa-search"
               aria-hidden="true"
               onClick={this.search__one}
+              style={{ cursor: "pointer" }}
             ></i>
           </form>
-          <form class="form-inline">
+          <form className="form-inline">
             <input
-              class="form-control mr-sm-2"
+              className="form-control mr-sm-2"
               type="search"
               placeholder="Search"
               aria-label="Search"
@@ -87,9 +89,10 @@ class Dashboard extends Component {
               onChange={this.handleChange}
             />
             <i
-              class="fa fa-search"
+              className="fa fa-search"
               aria-hidden="true"
               onClick={this.search__two}
+              style={{ cursor: "pointer" }}
             ></i>
           </form>
           <Button
@@ -121,8 +124,8 @@ class Dashboard extends Component {
                   <p>NO URL FOUND</p>
                 </div>
               )}
+            </div>
           </div>
-        </div>
         </div>
       </div>
     );

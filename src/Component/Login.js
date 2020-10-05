@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Component} from "react";
 import {
   Button,
   Form,
@@ -7,54 +7,75 @@ import {
   Message,
   Segment,
 } from "semantic-ui-react";
-import { useHistory } from "react-router-dom";
 
-const Login = () => {
-  const history = useHistory();
+class Login extends Component{
+  constructor(props){
+    super(props)
+    this.state = {
+      username: "",
+      password: ""
+    }
+  }
 
-  function forward() {
-    history.push("/dashboard");
+  handleChange = (event) => {
+    this.setState({
+      [event.target.name]: event.target.value
+    })
+  }
+
+  forward = () => {
+    this.props.history.push({
+      pathname: "/dashboard",
+      state:{
+        username: this.state.username
+      }
+    });
   };
-
-  return (
-    <div>
-      <Grid
-        textAlign="center"
-        style={{ height: "100vh" }}
-        verticalAlign="middle"
-      >
-        <Grid.Column style={{ maxWidth: 450 }}>
-          <Header as="h2" color="teal" textAlign="center">
-            Log-in to your account
-          </Header>
-          <Form size="large">
-            <Segment stacked>
-              <Form.Input
-                fluid
-                icon="user"
-                iconPosition="left"
-                placeholder="E-mail address"
-              />
-              <Form.Input
-                fluid
-                icon="lock"
-                iconPosition="left"
-                placeholder="Password"
-                type="password"
-              />
-
-              <Button color="teal" fluid size="large" onClick={forward}>
-                Login
-              </Button>
-            </Segment>
-          </Form>
-          <Message>
-            New to us? <a href="#">Sign Up</a>
-          </Message>
-        </Grid.Column>
-      </Grid>
-    </div>
-  );
+  render(){
+    return (
+      <div>
+        <Grid
+          textAlign="center"
+          style={{ height: "100vh" }}
+          verticalAlign="middle"
+        >
+          <Grid.Column style={{ maxWidth: 450 }}>
+            <Header as="h2" color="teal" textAlign="center">
+              Log-in to your account
+            </Header>
+            <Form size="large" onSubmit={this.forward}>
+              <Segment stacked>
+                <Form.Input
+                  fluid
+                  icon="user"
+                  iconPosition="left"
+                  placeholder="E-mail address"
+                  name="username"
+                  onChange={this.handleChange}
+                />
+                <Form.Input
+                  fluid
+                  icon="lock"
+                  iconPosition="left"
+                  placeholder="Password"
+                  type="password"
+                  name="password"
+                  onChange={this.handleChange}
+                />
+  
+                <Button color="teal" fluid size="large" type="submit">
+                  Login
+                </Button>
+              </Segment>
+            </Form>
+            <Message>
+              New to us? <a href="#">Sign Up</a>
+            </Message>
+          </Grid.Column>
+        </Grid>
+      </div>
+    );
+  }
 };
 
 export default Login;
